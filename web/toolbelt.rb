@@ -153,6 +153,16 @@ class Toolbelt < Sinatra::Base
     stats.inject({}){|x, p| x[p[0]] = p[1].to_i; x}.to_json
   end
 
+  get "/stats/updates/:days" do |days|
+    protected!
+    query = "SELECT user_agent FROM stats WHERE stamp > $1 AND os = 'zip' AND user_agent <> ''"
+    stats = db.exec(query, [Time.now - (days.to_i * 86400)]).values
+    macs = stats.select{|a| a[0] =~ /darwin/ }.length
+    windows = stats.length - macs
+    content_type :json
+    {"osx" => macs, "windows" => windows }.to_json
+  end
+
   # legacy redirects
   get("/osx/download")     { redirect "/osx"     }
   get("/windows/download") { redirect "/windows" }
