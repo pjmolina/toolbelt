@@ -7,11 +7,11 @@ if "%ProgramFiles%" == "%ProgramW6432%"  goto x64
 goto x86
 
 :x86
-set HerokuRubyPath=%ProgramFiles%\ruby-1.9.3
+set HerokuRubyPath=%ProgramFiles%\ruby-1.9.2
 goto launch
 
 :x64
-set HerokuRubyPath=%ProgramFiles(x86)%\ruby-1.9.3
+set HerokuRubyPath=%ProgramFiles(x86)%\ruby-1.9.2
 goto launch
 
 :launch
