@@ -40,7 +40,9 @@ file pkg("heroku-toolbelt-#{version}.pkg") do |t|
 
     sh %{ pkgutil --flatten pkg heroku-toolbelt-#{version}.pkg }
 
-    cp_r "heroku-toolbelt-#{version}.pkg", t.name
+    sh %{ productsign --sign "Developer ID Installer: Heroku INC" heroku-toolbelt-#{version}.pkg heroku-toolbelt-#{version}-signed.pkg }
+
+    cp_r "heroku-toolbelt-#{version}-signed.pkg", t.name
   end
 end
 
