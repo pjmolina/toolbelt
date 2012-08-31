@@ -34,7 +34,7 @@ You're now ready to create your first Heroku app:
 To keep your heroku client updated, simply run `heroku update`
 
     $ heroku update
-    -----> Updating to latest client... done
+    Updating to latest client... done
 
 ### Technical details
 
