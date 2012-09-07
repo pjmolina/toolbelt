@@ -37,4 +37,4 @@ You're now ready to create your first Heroku app:
 
 ### Technical details
 
-The `heroku` command line client will be installed into `/usr/local/heroku` and the executable will be symlinked as `/usr/bin/heroku`.
+The install script will add our repository and key to your apt sources and then have apt install the `heroku` and `foreman` packages from it. The `heroku` command line client will be installed into `/usr/local/heroku` and the executable will be symlinked as `/usr/bin/heroku`.
