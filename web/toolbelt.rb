@@ -94,7 +94,7 @@ class Toolbelt < Sinatra::Base
     haml :index, :locals => { :platform => useragent_platform }
   end
 
-  %w( osx windows linux ).each do |platform|
+  %w( osx windows debian other ).each do |platform|
     get "/#{platform}" do
       if request.xhr?
         markdown_plus platform.to_sym
@@ -137,11 +137,18 @@ class Toolbelt < Sinatra::Base
   end
 
   # linux install instructions
-  get "/install.sh" do
+  get "/install-ubuntu.sh" do
     # viewing in the browser shouldn't count as a download
     record_hit "debian" if request.user_agent =~ /curl|wget/i
     content_type "text/plain"
-    erb :install
+    erb :"install-ubuntu"
+  end
+
+  get "/install-other.sh" do
+    # viewing in the browser shouldn't count as a download
+    record_hit "other" if request.user_agent =~ /curl|wget/i
+    content_type "text/plain"
+    erb :"install-other"
   end
 
   get "/stats/:days" do |days|
@@ -167,4 +174,5 @@ class Toolbelt < Sinatra::Base
   get("/osx/download")     { redirect "/osx"     }
   get("/windows/download") { redirect "/windows" }
   get("/linux/readme")     { redirect "/linux"   }
+  get("/linux")            { redirect "/debian"  }
 end

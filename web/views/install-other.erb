@@ -1,0 +1,19 @@
+echo "This script requires superuser access to install apt packages."
+echo "You will be prompted for your password by sudo."
+
+# clear any previous sudo permission
+sudo -k
+
+# run inside sudo
+sudo sh <<SCRIPT
+
+  rm -rf /usr/local/heroku
+  mkdir -p /usr/local/heroku
+  cd /usr/local/heroku
+  wget -O- http://assets.heroku.com.s3.amazonaws.com/heroku-client/heroku-client.tgz | tar xz
+  mv heroku-client/* .
+  rmdir heroku-client
+  mkdir bin
+  mv heroku bin/
+
+SCRIPT
