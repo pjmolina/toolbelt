@@ -5,14 +5,6 @@
 ### What is it?
 
 * [Heroku client](http://github.com/heroku/heroku) - CLI tool for creating and managing Heroku apps
-* [Foreman](http://github.com/ddollar/foreman) - an easy option for running your apps locally
-* [Git](http://code.google.com/p/git-osx-installer) - revision control and pushing to Heroku
-
-### Other Distros
-
-We hope to support other package managers in the future. In the mean time, you can use [RubyGems](http://rubygems.org) to install the Heroku client and Foreman:
-
-    $ gem install heroku foreman
 
 ### Getting started
 
@@ -37,4 +29,4 @@ You're now ready to create your first Heroku app:
 
 ### Technical details
 
-The install script will add our repository and key to your apt sources and then have apt install the `heroku` and `foreman` packages from it. The `heroku` command line client will be installed into `/usr/local/heroku` and the executable will be symlinked as `/usr/bin/heroku`.
+The install script will download a tarball of the `heroku` package and install it to `/usr/local/heroku`.
