@@ -17,3 +17,8 @@ sudo sh <<SCRIPT
   mv heroku bin/
 
 SCRIPT
+
+if [[ ":$PATH:" != *":/usr/local/heroku/bin:"* ]]; then
+  echo "Add the Heroku CLI to your PATH using:"
+  echo "$ echo 'PATH=\"/usr/local/heroku/bin:\$PATH\"' >> ~/.profile"
+fi
