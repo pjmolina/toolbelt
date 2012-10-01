@@ -14,7 +14,9 @@ sudo sh <<SCRIPT
   mv heroku-client/* .
   rmdir heroku-client
   mkdir bin
-  mv heroku bin/
+  cat heroku | sed -e 's/\.\.\/vendor/\.\/vendor/' > bin/heroku
+  chmod +x bin/heroku
+  rm heroku
 
 SCRIPT
 
