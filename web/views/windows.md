@@ -29,13 +29,6 @@ You're now ready to create your first Heroku app:
     http://stark-fog-398.herokuapp.com/ | git@heroku.com:stark-fog-398.git
     Git remote heroku added
 
-### Staying up to date
-
-To keep your heroku client updated, simply run `heroku update`
-
-    $ heroku update
-    Updating to latest client... done
-
 ### Technical details
 
-The `heroku` client will be installed into Program Files, and will contain a bundled Ruby VM for its own execution.
+The `heroku` client will be installed into `C:\Program Files\Heroku` and will be added to your `%PATH%`.
