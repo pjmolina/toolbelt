@@ -27,7 +27,7 @@ file pkg("heroku-toolbelt-#{version}.apt") do |t|
 
     sh "apt-ftparchive packages . > Packages"
     sh "gzip -c Packages > Packages.gz"
-    sh "apt-ftparchive release . > Release"
+    sh "apt-ftparchive -o Origin=\"Heroku, Inc.\" -o Suite=Stable release . > Release"
     sh "gpg -abs -u 0F1B0520 -o Release.gpg Release"
   end
 end
