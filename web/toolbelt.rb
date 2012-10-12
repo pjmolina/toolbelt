@@ -50,7 +50,7 @@ class Toolbelt < Sinatra::Base
     def useragent_platform
       case request.user_agent
         when /Mac OS X/ then :osx
-        when /Linux/    then :linux
+        when /Linux/    then :debian
         when /Windows/  then :windows
         else                 :osx
       end
