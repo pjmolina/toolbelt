@@ -13,10 +13,6 @@ sudo sh <<SCRIPT
   wget -O- http://assets.heroku.com.s3.amazonaws.com/heroku-client/heroku-client.tgz | tar xz
   mv heroku-client/* .
   rmdir heroku-client
-  mkdir bin
-  cat heroku | sed -e 's/\.\.\//\.\.\/\.\.\//' > bin/heroku
-  chmod +x bin/heroku
-  rm heroku
 
 SCRIPT
 
