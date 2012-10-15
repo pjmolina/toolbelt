@@ -10,7 +10,7 @@ sudo sh <<SCRIPT
   rm -rf /usr/local/heroku
   mkdir -p /usr/local/heroku
   cd /usr/local/heroku
-  wget -O- http://assets.heroku.com.s3.amazonaws.com/heroku-client/heroku-client.tgz | tar xz
+  wget -qO- http://assets.heroku.com.s3.amazonaws.com/heroku-client/heroku-client.tgz | tar xz
   mv heroku-client/* .
   rmdir heroku-client
 
@@ -21,3 +21,5 @@ if [[ ":$PATH:" != *":/usr/local/heroku/bin:"* ]]; then
   echo "Add the Heroku CLI to your PATH using:"
   echo "$ echo 'PATH=\"/usr/local/heroku/bin:\$PATH\"' >> ~/.profile"
 fi
+
+echo "Installation complete"
