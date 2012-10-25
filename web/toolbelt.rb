@@ -105,6 +105,10 @@ class Toolbelt < Sinatra::Base
     end
   end
 
+  get "/update/hash" do
+    ENV["UPDATE_HASH"].to_s
+  end
+
   get "/:name.css" do
     last_modified newest_mtime
     sass params[:name].to_sym rescue not_found
