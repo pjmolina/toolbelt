@@ -1,3 +1,5 @@
+HEROKU_CLIENT_URL="http://assets.heroku.com.s3.amazonaws.com/heroku-client/heroku-client.tgz"
+
 echo "This script requires superuser access to install software."
 echo "You will be prompted for your password by sudo."
 
@@ -11,7 +13,13 @@ sudo sh <<SCRIPT
   rm -rf /usr/local/heroku
   mkdir -p /usr/local/heroku
   cd /usr/local/heroku
-  wget -qO- http://assets.heroku.com.s3.amazonaws.com/heroku-client/heroku-client.tgz | tar xz
+
+  if [[ -z "$(which wget)" ]]; then
+    curl -s $HEROKU_CLIENT_URL | tar xz
+  else
+    wget -qO- $HEROKU_CLIENT_URL | tar xz
+  fi
+
   mv heroku-client/* .
   rmdir heroku-client
 
