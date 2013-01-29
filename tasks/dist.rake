@@ -1,4 +1,5 @@
 require "tmpdir"
+require "rbconfig"
 
 def basedir
   File.expand_path("../../", __FILE__)
@@ -83,7 +84,7 @@ def version
 end
 
 def windows?
-  defined?(RUBY_PLATFORM) and RUBY_PLATFORM =~ /(win|w)32$/
+  RbConfig::CONFIG["host_os"] =~ /mingw|mswin/
 end
 
 Dir[File.expand_path("../../dist/**/*.rake", __FILE__)].each do |rake|
