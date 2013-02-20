@@ -4,7 +4,7 @@ gem "compass"
 gem "haml"
 gem "heroku-nav"
 gem "rake"
-gem "rdiscount"
+gem "rdiscount", "~> 1.6.x"
 gem "sass"
 gem "sinatra"
 
