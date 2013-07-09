@@ -6,7 +6,7 @@
 
 * [Heroku client](http://github.com/heroku/heroku) - CLI tool for creating and managing Heroku apps
 * [Foreman](http://github.com/ddollar/foreman) - an easy option for running your apps locally
-* [Git](http://code.google.com/p/git-osx-installer) - revision control and pushing to Heroku
+* [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git#Installing-on-Linux) - revision control and pushing to Heroku
 
 ### Getting started
 
