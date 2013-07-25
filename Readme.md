@@ -54,6 +54,30 @@ dependencies must be manually installed.
 You also need a copy of the `Certificates.p12` file placed in the
 C drive root and cert's password set in the `CERT_PASSWORD` environment variable.
 
+
+## Ruby versions
+
+Toolbelt bundles Ruby using different sources according to the OS:
+
+- Windows: fetches [rubyinstaller.exe](http://rubyinstaller.org/) from S3.
+- Mac: fetches ruby.pkg from S3. That file was extracted off
+[RailsInstaller]http://railsinstaller.org/en).
+- Linux: uses system debs for Ruby.
+
+
+## Beta versions
+
+In order to test packaging new Ruby versions or change the way builds happen,
+it's possible to build beta versions of the Toolbelt, leaving the original
+files untouched.
+
+To do so, release a `pre` version of the heroku gem (eg: version it `1.2.3.pre`).
+Then, in the toolbelt repo, update the submodule `components/heroku` to match
+that version, and push it in a branch (eg: `toolbelt-beta`). Now when you request
+Jenkins to build this branch Toolbelt will generate `heroku-toolbelt-beta`
+instead, leaving the original file untouched.
+
+
 # License
 
 The MIT License (MIT)
