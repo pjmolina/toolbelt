@@ -89,6 +89,14 @@ class Toolbelt < Sinatra::Base
     puts e.backtrace.join("\n")
   end
 
+  before do
+    # herokuapp.com -> heroku.com
+    if request.url =~ /\Ahttps:\/\/(.+)\.herokuapp.com/
+      next_url = request.url.gsub("https://#{$1}.herokuapp.com", "https://#{$1}.heroku.com")
+      redirect next_url, 301
+    end
+  end
+
   get "/" do
     last_modified newest_mtime
     haml :index, :locals => { :platform => useragent_platform }
