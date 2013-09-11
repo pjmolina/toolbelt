@@ -150,8 +150,8 @@ var pjax = $.pjax = function( options ) {
     }
 
     // Google Analytics support
-    if ( (options.replace || options.push) && window._gaq )
-      _gaq.push(['_trackPageview'])
+    if ( (options.replace || options.push) && (typeof window.dataLayer != 'undefined') )
+      dataLayer.push({ 'event': 'trackPageview', 'virtualPath': window.location.pathname.toString() });
 
     // If the URL has a hash in it, make sure the browser
     // knows to navigate to the hash.
