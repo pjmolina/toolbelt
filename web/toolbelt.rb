@@ -117,7 +117,7 @@ class Toolbelt < Sinatra::Base
   # apt repository
   get "/ubuntu/*" do
     dir = params[:splat].first.gsub(/^\.\//, "")
-    redirect "http://heroku-toolbelt.s3.amazonaws.com/apt/#{dir}"
+    redirect "https://s3.amazonaws.com/heroku-toolbelt/apt/#{dir}"
   end
 
   get "/download/windows" do
