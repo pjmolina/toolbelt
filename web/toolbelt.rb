@@ -117,27 +117,27 @@ class Toolbelt < Sinatra::Base
   # apt repository
   get "/ubuntu/*" do
     dir = params[:splat].first.gsub(/^\.\//, "")
-    redirect "http://heroku-toolbelt.s3.amazonaws.com/apt/#{dir}"
+    redirect "https://s3.amazonaws.com/heroku-toolbelt/apt/#{dir}"
   end
 
   get "/download/windows" do
     record_hit "windows"
-    redirect "http://assets.heroku.com/heroku-toolbelt/heroku-toolbelt.exe"
+    redirect "https://s3.amazonaws.com/assets.heroku.com/heroku-toolbelt/heroku-toolbelt.exe"
   end
 
   get "/download/osx" do
     record_hit "osx"
-    redirect "http://assets.heroku.com/heroku-toolbelt/heroku-toolbelt.pkg"
+    redirect "https://s3.amazonaws.com/assets.heroku.com/heroku-toolbelt/heroku-toolbelt.pkg"
   end
 
   get "/download/zip" do
     record_hit "zip"
-    redirect "http://assets.heroku.com/heroku-client/heroku-client.zip"
+    redirect "https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.zip"
   end
 
   get "/download/beta-zip" do
     record_hit "zip"
-    redirect "http://assets.heroku.com/heroku-client/heroku-client-beta.zip"
+    redirect "https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client-beta.zip"
   end
 
   # linux install instructions
