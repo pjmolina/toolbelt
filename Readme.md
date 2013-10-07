@@ -20,6 +20,15 @@ The toolbelt stores download statistics in Postgres:
     $ createdb toolbelt
     $ cat toolbelt.sql | psql toolbelt
 
+# Publishing Updates
+
+To publish a new version of Foreman or the Heroku client, simply
+update the git submodule under the `components/` directory and
+initiate a build of the `toolbelt-build` job in Jenkins. Note that the
+version of the Toolbelt is locked to the version of the Heroku client;
+it is currently impossible to cut a new release of the Toolbelt
+without a corresponding bump to the Heroku client version number.
+
 # Packaging
 
 First pull in the dependencies with bundler, then pull in the
@@ -82,7 +91,7 @@ instead, leaving the original file untouched.
 
 The MIT License (MIT)
 
-Copyright © Heroku 2008 - 2012
+Copyright © Heroku 2008 - 2013
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
