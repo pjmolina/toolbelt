@@ -82,20 +82,41 @@ class Toolbelt < Sinatra::Base
     end
   end
 
+  def log_page_visit(req)
+    event = { 'page_title' => nil, 'referrer_query_string' => nil, 'user_heroku_uid' => nil, 'user_email' => nil, 'who' => nil }
+    event['page_url'] = req.base_url + req.path # Don't want url b/c that includes query_string
+    event['page_query_string'] = req.query_string
+    event['referrer_url'] = req.referer
+    
+    event['at'] = Time.now
+    event['event_type'] = 'PageVisit'
+    event['component'] = 'toolbelt'
+    
+    user = req.env['bouncer.user']
+    if user && user['allow_tracking']
+      event['user_heroku_uid'] = user['id']
+      event['user_email'] = event['who'] = user['email']
+    end
+    STDOUT.puts event.to_json
+  end
+
   def record_hit os
     db.exec("INSERT INTO stats (os, user_agent, ip, referer) VALUES ($1, $2, $3, $4)",
             [os, request.user_agent, request.ip, request.referer])
+
   rescue StandardError => e
     puts e.backtrace.join("\n")
   end
 
   get "/" do
+    log_page_visit(request)
     last_modified newest_mtime
     haml :index, :locals => { :platform => useragent_platform }
   end
 
   %w( osx windows debian standalone ).each do |platform|
     get "/#{platform}" do
+      log_page_visit(request)
       if request.xhr?
         markdown_plus platform.to_sym
       else
@@ -125,43 +146,53 @@ class Toolbelt < Sinatra::Base
   end
 
   get "/download/windows" do
+    log_page_visit(request)
     record_hit "windows"
     redirect "https://s3.amazonaws.com/assets.heroku.com/heroku-toolbelt/heroku-toolbelt.exe"
   end
 
   get "/download/osx" do
+    log_page_visit(request)
     record_hit "osx"
     redirect "https://s3.amazonaws.com/assets.heroku.com/heroku-toolbelt/heroku-toolbelt.pkg"
   end
 
   get "/download/zip" do
+    log_page_visit(request)
     record_hit "zip"
     redirect "https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.zip"
   end
 
   get "/download/beta-zip" do
+    log_page_visit(request)
     record_hit "zip"
     redirect "https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client-beta.zip"
   end
 
   # linux install instructions
   get "/install-ubuntu.sh" do
-    # viewing in the browser shouldn't count as a download
-    record_hit "debian" if request.user_agent =~ /curl|wget/i
+    if request.user_agent =~ /curl|wget/i # viewing in the browser shouldn't count as a download
+      record_hit "debian" 
+      log_page_visit(request)
+    end
     content_type "text/plain"
     erb :"install-ubuntu"
   end
 
   get "/install.sh" do
-    # viewing in the browser shouldn't count as a download
-    record_hit "other" if request.user_agent =~ /curl|wget/i
+    if request.user_agent =~ /curl|wget/i # viewing in the browser shouldn't count as a download
+      record_hit "other" 
+      log_page_visit(request)
+    end      
     content_type "text/plain"
     erb :"install.sh"
   end
 
   get "/install-other.sh" do
-    # viewing in the browser shouldn't count as a download
-    record_hit "other" if request.user_agent =~ /curl|wget/i
+    if request.user_agent =~ /curl|wget/i # viewing in the browser shouldn't count as a download
+      record_hit "other" 
+      log_page_visit(request)
+    end
     content_type "text/plain"
     erb :"install.sh"
   end
