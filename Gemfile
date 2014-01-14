@@ -11,12 +11,14 @@ gem "sinatra"
 
 group :development do
   gem "shotgun"
-  gem "pg", "=0.13.2"
 end
 
 group :production do
   gem "rack-ssl-enforcer"
   gem "thin"
+end
+
+group :development, :production do
   gem "pg", "=0.13.2"
 end
 
