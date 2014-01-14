@@ -20,6 +20,7 @@ end
 
 group :development, :production do
   gem "pg", "=0.13.2"
+  gem "honeybadger"
 end
 
 group :packaging do
