@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/raul/heroku-bouncer
+  revision: c4e6bc95668c9e1cfdf1fb6a74cfe67c6c78f3f9
+  branch: skip-option
+  specs:
+    heroku-bouncer (0.4.0.pre3)
+      faraday (~> 0.8)
+      omniauth-heroku (>= 0.1.0)
+      rack (~> 1.0)
+      sinatra (~> 1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -27,11 +38,6 @@ GEM
     haml (4.0.5)
       tilt
     hashie (2.0.5)
-    heroku-bouncer (0.4.0.pre3)
-      faraday (~> 0.8)
-      omniauth-heroku (>= 0.1.0)
-      rack (~> 1.0)
-      sinatra (~> 1.0)
     heroku-nav (0.2.2)
     honeybadger (1.10.1)
       json
@@ -91,7 +97,7 @@ DEPENDENCIES
   compass
   fog
   haml
-  heroku-bouncer (= 0.4.0.pre3)
+  heroku-bouncer (= 0.4.0.pre3)!
   heroku-nav
   honeybadger
   pg (= 0.13.2)

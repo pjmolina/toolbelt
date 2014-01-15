@@ -8,7 +8,7 @@ gem "rake"
 gem "rdiscount", "~> 1.6.x"
 gem "sass"
 gem "sinatra"
-gem "heroku-bouncer", "0.4.0.pre3"
+gem "heroku-bouncer", "0.4.0.pre3", git: 'git://github.com/raul/heroku-bouncer', branch: 'skip-option'
 
 group :development do
   gem "shotgun"
