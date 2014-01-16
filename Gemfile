@@ -24,6 +24,12 @@ group :development, :production do
   gem "honeybadger"
 end
 
+group :test do
+  gem "rack-test"
+  gem "minitest-spec-context"
+  gem "mocha"
+end
+
 group :packaging do
   gem "fog"
 end
