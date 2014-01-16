@@ -9,14 +9,6 @@ Honeybadger.configure do |config|
 end
 use Honeybadger::Rack
 
-use Rack::Session::Cookie, secret: 'guess-me'
-use ::Heroku::Bouncer, oauth: { id: ENV['HEROKU_OAUTH_ID'], secret: ENV['HEROKU_OAUTH_SECRET'] },
-                       secret: ENV['SESSION_SECRET'],
-                       session_sync_nonce: 'heroku_session_nonce',
-                       expose_user: true,
-                       allow_anonymous: lambda { |_| true },
-                       skip: lambda { |env| env['PATH_INFO'].to_s.match(/\A\/ubuntu/) }
-
 $:.unshift File.expand_path("../web", __FILE__)
 require "toolbelt_common_logger"
 require "toolbelt"

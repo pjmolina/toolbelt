@@ -12,6 +12,14 @@ class Toolbelt < Sinatra::Base
 
   use Heroku::Nav::Header
 
+  use Rack::Session::Cookie, secret: ENV['SESSION_SECRET']
+  use ::Heroku::Bouncer, oauth: { id: ENV['HEROKU_OAUTH_ID'], secret: ENV['HEROKU_OAUTH_SECRET'] },
+                         secret: ENV['SESSION_SECRET'],
+                         session_sync_nonce: 'heroku_session_nonce',
+                         expose_user: true,
+                         allow_anonymous: lambda { |_| true },
+                         skip: lambda { |env| env['PATH_INFO'].to_s.match(/\A\/ubuntu/) }
+
   configure do
     Compass.configuration do |config|
       config.project_path = File.dirname(__FILE__)
