@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/heroku/toolbelt.png)](https://travis-ci.org/heroku/toolbelt)
+
 # Heroku Toolbelt
 
 The Heroku Toolbelt is a package of the Heroku CLI, Foreman, and Git —
