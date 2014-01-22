@@ -103,6 +103,7 @@ class Toolbelt < Sinatra::Base
     event['page_url'] = req.base_url + req.path # Don't want url b/c that includes query_string
     event['page_query_string'] = req.query_string
     event['referrer_url'] = req.referer
+    event['source_ip'] = req.ip
 
     event['at'] = Time.now
     event['event_type'] = event_type
