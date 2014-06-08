@@ -44,7 +44,7 @@ Filename: "{tmp}\rubyinstaller.exe"; Parameters: "/verysilent /noreboot /nocance
   Flags: shellexec waituntilterminated; StatusMsg: "Installing Ruby"; Components: "toolbelt/client"
 Filename: "{app}\ruby-1.9.2\bin\gem.bat"; Parameters: "install foreman --no-rdoc --no-ri"; \
   Flags: runhidden shellexec waituntilterminated; StatusMsg: "Installing Foreman"; Components: "toolbelt/foreman"
-Filename: "{tmp}\git.exe"; Parameters: "/silent /nocancel /noicons"; \
+Filename: "{tmp}\git.exe"; Parameters: "/verysilent /norestart /sp- /closeapplications /restartapplications /nocancel /noicons"; \
   Flags: shellexec waituntilterminated; StatusMsg: "Installing Git"; Components: "toolbelt/git"
 
 [Code]
